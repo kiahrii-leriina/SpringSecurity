@@ -30,5 +30,10 @@ public class UserController {
 		user.setPassword(encoder.encode(user.getPassword()));
 		return service.registerUser(user);
 	}
+	
+	@PostMapping("/login")
+	public String login(Users user) {
+		return service.verify(user);
+	}
 
 }

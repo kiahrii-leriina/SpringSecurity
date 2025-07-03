@@ -19,6 +19,9 @@ public class UserService {
 	private UserRepo repo;
 	
 	@Autowired
+	private JWTService jwtService;
+	
+	@Autowired
 	private AuthenticationManager authmanager;
 	
 
@@ -36,7 +39,7 @@ public class UserService {
 		Authentication authentication = 
 				authmanager.authenticate(new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
 		if(authentication.isAuthenticated()) {
-			return "success";
+			return jwtService.generateToken(user.getName());
 		}
 		return "fail";
 		

@@ -32,7 +32,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(Users user) {
+	public String login(@RequestBody Users user) {
 		return service.verify(user);
 	}
 
